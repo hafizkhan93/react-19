@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/react-bootstrap": "^0.32.37",
+    "axios": "^1.7.2",
     "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
     "bootstrap": "^5.3.3",
     "css-loader": "^7.1.2",
