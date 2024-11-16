@@ -1,3 +1,15 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"]
+  "presets": [
+    [
+      "@babel/preset-react", // This transforms JSX syntax
+      {
+        "runtime": "automatic" // Required for the new JSX Transform (React 19)
+      }
+    ]
+  ],
+  "plugins": [
+    // If React 19 compiler provides a Babel plugin, use it here
+    // e.g., '@babel/plugin-transform-react-compiler' (adjust based on actual plugin name)
+    "react-compiler"
+  ]
 }

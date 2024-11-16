@@ -30,6 +30,11 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.ts$/,
+        include: /node_modules\/@restart\/hooks/,
+        type: "javascript/auto",
+      },
     ],
   },
   plugins: [

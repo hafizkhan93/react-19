@@ -1,7 +1,6 @@
-import { Card, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Card } from "react-bootstrap";
 import { Product } from "../interfaces/product";
-import React from "react";
-import { useState } from "react";
 import "../styles.css";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
@@ -18,6 +17,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <Card.Title>{product.name}</Card.Title>
         <Card.Text style={{ height: "100px" }}>{product.description}</Card.Text>
         <Button variant="primary">Add to Cart</Button>
+        <Card.Text style={{ float: "right" }}>€{product.price}</Card.Text>
       </Card.Body>
     </Card>
   );

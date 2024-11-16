@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Card, Offcanvas } from "react-bootstrap";
-import { Button } from "react-bootstrap";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Button, Offcanvas } from "react-bootstrap";
 import { Constants } from "../constants/constants";
 import { Product } from "../interfaces/product";
-import ProductCard from "./ProductCard";
 import AddProductModal from "./AddProductModal";
+import ProductCard from "./ProductCard";
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [show, setShow] = useState(false);
@@ -37,7 +36,7 @@ const App: React.FC = () => {
       });
   }
   return (
-    <div className="container sx">
+    <div className="container sx mt-5">
       <Button
         style={{ float: "right", marginRight: "30px" }}
         variant="primary"
