@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Offcanvas } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { Constants } from "../constants/constants";
 import { Product } from "../interfaces/product";
 import ProductCard from "./ProductCard";
+import AddProductModal from "./AddProductModal";
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [show, setShow] = useState(false);
+  const [showAddProductModal, setShowProductModal] = useState(false);
+
+  function handleClose() {
+    setShow(false);
+  }
+  function handleShow() {
+    setShow(true);
+  }
+
+  function openShowAddProductModal() {
+    setShowProductModal(true);
+  }
 
   useEffect(() => {
     getAllProducts();
@@ -24,6 +38,20 @@ const App: React.FC = () => {
   }
   return (
     <div className="container sx">
+      <Button
+        style={{ float: "right", marginRight: "30px" }}
+        variant="primary"
+        onClick={handleShow}
+      >
+        Cart
+      </Button>
+      <Button
+        style={{ marginLeft: "30px" }}
+        variant="primary"
+        onClick={openShowAddProductModal}
+      >
+        Add new Product
+      </Button>
       <div className="row mx-3 my-3">
         {products.map((productData) => (
           <div className="col">
@@ -34,6 +62,24 @@ const App: React.FC = () => {
           </div>
         ))}
       </div>
+      {showAddProductModal && (
+        <AddProductModal
+          show={showAddProductModal}
+          onHide={() => setShowProductModal(false)}
+        />
+      )}
+
+      <Offcanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>
+            Your current items in the shopping cart
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          Some text as placeholder. In real life you can have the elements you
+          have chosen. Like, text, images, lists, etc.
+        </Offcanvas.Body>
+      </Offcanvas>
     </div>
   );
 };

@@ -17,9 +17,9 @@
     "bootstrap": "^5.3.3",
     "css-loader": "^7.1.2",
     "eslint-plugin-react-compiler": "^0.0.0-experimental-c8b3f72-20240517",
-    "react": "^19.0.0-beta-94eed63c49-20240425",
+    "react": "19.0.0-rc-603e6108-20241029",
     "react-bootstrap": "^2.10.2",
-    "react-dom": "^19.0.0-rc-915b914b3a-20240515",
+    "react-dom": "19.0.0-rc-603e6108-20241029",
     "style-loader": "^4.0.0"
   },
   "devDependencies": {
