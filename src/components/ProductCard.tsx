@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
-import { Product } from "../interfaces/product";
+import { Product } from "../interfaces/Product";
 import "../styles.css";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {

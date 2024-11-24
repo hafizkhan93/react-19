@@ -1,28 +1,27 @@
 import React, { useActionState, useState } from "react";
 import { Badge, Button, Form, InputGroup, Modal } from "react-bootstrap";
+import { Product } from "../interfaces/Product";
 import { FormAction } from "../types/FormAction";
-import { FormState } from "../types/FormState";
-
 interface AddProductModalProps {
   show: boolean;
   onHide: () => void;
-  onProductCreated: () => void;
+  onProductCreated: (state: Product) => void;
 }
 const AddProductModal: React.FC<AddProductModalProps> = ({
   show,
   onHide,
   onProductCreated,
 }) => {
-  const initialState: FormState = {
+  const initialState: Product = {
+    id: 0,
     name: "",
     description: "",
     price: 0.0,
     picture: "",
     errors: {},
   };
-  // Define the update action for form state
   const [showToast, setShowToast] = useState(false);
-  const [state, dispatch, isPending] = useActionState<FormState, FormAction>(
+  const [state, dispatch, isPending] = useActionState<Product, FormAction>(
     (state, action) => {
       switch (action.type) {
         case "update":
@@ -47,7 +46,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
             return { ...state, errors: newErrors };
           }
           onHide();
-          onProductCreated();
+          onProductCreated(state);
           console.log("Form submitted successfully:", state);
           return state; // No changes, just log successful submit
         default:
@@ -66,28 +65,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({
   function handleSubmit() {
     dispatch({ type: "submit" });
   }
-  const showSuccessModal = () => {
-    return (
-      <Modal size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  };
 
   return (
     <Modal

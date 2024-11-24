@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Wireless Headphones",
       "price": 99.99,
       "description": "High-quality wireless headphones with noise cancellation and long battery life.",
@@ -13,7 +13,7 @@
       "reviews": 112
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Smartphone",
       "price": 699.99,
       "description": "Latest model smartphone with stunning display, powerful processor, and excellent camera.",
@@ -25,9 +25,9 @@
       "reviews": 298
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Running Shoes",
-      "price": 120.0,
+      "price": 120,
       "description": "Comfortable and durable running shoes suitable for all terrains and weather conditions.",
       "picture": "data:image/jpeg;base64,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",
       "category": "Sportswear",
@@ -37,7 +37,7 @@
       "reviews": 67
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Blender",
       "price": 45.5,
       "description": "Powerful blender with multiple speed settings and a large capacity jug.",

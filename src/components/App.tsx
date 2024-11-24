@@ -2,27 +2,35 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Offcanvas, Toast, ToastContainer } from "react-bootstrap";
 import { CheckCircleFill } from "react-bootstrap-icons";
-import { Constants } from "../constants/constants";
-import { Product } from "../interfaces/product";
+import { Constants } from "../constants/Constants";
+import { Product } from "../interfaces/Product";
 import AddProductModal from "./AddProductModal";
 import ProductCard from "./ProductCard";
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [show, setShow] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [showAddProductModal, setShowProductModal] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
-  function handleClose() {
-    setShow(false);
+  function handleCloseCart() {
+    setShowCart(false);
   }
-  function handleShow() {
-    setShow(true);
+  function handleShowCart() {
+    setShowCart(true);
   }
 
   function openShowAddProductModal() {
     setShowProductModal(true);
   }
-  function handleProductCreated() {
+  async function handleProductCreated(addProduct: Product) {
+    axios
+      .post(Constants.MOCKSERVER_URL + "/products", addProduct)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     setShowToast(true);
   }
 
@@ -45,7 +53,7 @@ const App: React.FC = () => {
       <Button
         style={{ float: "right", marginRight: "30px" }}
         variant="primary"
-        onClick={handleShow}
+        onClick={handleShowCart}
       >
         Cart
       </Button>
@@ -70,11 +78,13 @@ const App: React.FC = () => {
         <AddProductModal
           show={showAddProductModal}
           onHide={() => setShowProductModal(false)}
-          onProductCreated={() => handleProductCreated()}
+          onProductCreated={(addProduct: Product) =>
+            handleProductCreated(addProduct)
+          }
         />
       )}
 
-      <Offcanvas show={show} onHide={handleClose} placement="end">
+      <Offcanvas show={showCart} onHide={handleCloseCart} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             Your current items in the shopping cart
