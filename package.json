@@ -22,6 +22,7 @@
     "eslint-plugin-react-compiler": "^0.0.0-experimental-c8b3f72-20240517",
     "react": "^19.0.0-rc.0",
     "react-bootstrap": "^2.10.2",
+    "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^19.0.0-rc.0",
     "style-loader": "^4.0.0"
   },

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Offcanvas } from "react-bootstrap";
+import { Button, Offcanvas, Toast, ToastContainer } from "react-bootstrap";
+import { CheckCircleFill } from "react-bootstrap-icons";
 import { Constants } from "../constants/constants";
 import { Product } from "../interfaces/product";
 import AddProductModal from "./AddProductModal";
@@ -8,6 +9,7 @@ import ProductCard from "./ProductCard";
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [show, setShow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [showAddProductModal, setShowProductModal] = useState(false);
 
   function handleClose() {
@@ -19,6 +21,9 @@ const App: React.FC = () => {
 
   function openShowAddProductModal() {
     setShowProductModal(true);
+  }
+  function handleProductCreated() {
+    setShowToast(true);
   }
 
   useEffect(() => {
@@ -65,6 +70,7 @@ const App: React.FC = () => {
         <AddProductModal
           show={showAddProductModal}
           onHide={() => setShowProductModal(false)}
+          onProductCreated={() => handleProductCreated()}
         />
       )}
 
@@ -79,6 +85,25 @@ const App: React.FC = () => {
           have chosen. Like, text, images, lists, etc.
         </Offcanvas.Body>
       </Offcanvas>
+      <ToastContainer style={{ zIndex: 1 }} position="top-center">
+        <Toast
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={5000}
+          autohide
+        >
+          <Toast.Header>
+            <CheckCircleFill
+              size="16"
+              style={{ marginRight: "0.5rem" }}
+            ></CheckCircleFill>
+            <strong>Success 👍</strong>
+          </Toast.Header>
+          <Toast.Body>
+            New product has been created, you should now see it in the overview!
+          </Toast.Body>
+        </Toast>
+      </ToastContainer>
     </div>
   );
 };
